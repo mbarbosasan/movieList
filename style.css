@@ -1,0 +1,18 @@
+div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  word-wrap: wrap;
+  font-size: 18px;
+  font-family: "IBM Plex Mono";
+}
+
+.movie-description {
+  width: 50%;
+}
+
+img {
+  border-radius: 10px;
+}
