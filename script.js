@@ -16,8 +16,8 @@ async function randomMovie() {
   const randomNumber = Math.floor(
     Math.random() * (1 + maxNumber - minNumber) + minNumber
   );
-  movieList = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=pt-BR&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&append_to_response=watch/providers`;
 
+   try { movieList = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=pt-BR&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&append_to_response=watch/providers`;
   const fetchMovie = await fetch(movieList);
   const movies = await fetchMovie.json();
 
@@ -26,27 +26,32 @@ async function randomMovie() {
   movieImg.setAttribute(
     "src",
     `${imgLink}w300/${movies.results[randomNumber].poster_path}`
-  );
-  const fetchProvidersList = await fetch(
-    `https://api.themoviedb.org/3/movie/${randomNumber}}/watch/providers?api_key=${apiKey}`
-  );
+  ); }
+  catch (error) {
+    console.log(error);
+  }
+
   try {
-    const providersList = await fetchProvidersList.json();
-    watchProviders.setAttribute(
-      "src",
-      `${imgLink}original${providersList.results.BR.flatrate[0].logo_path}`
+    const fetchProvidersList = await fetch(
+      `https://api.themoviedb.org/3/movie/${randomNumber}}/watch/providers?api_key=${apiKey}`
     );
+    const providersList = await fetchProvidersList.json();
+    const streamList = await providersList.results.BR.flatrate;
+    streamList.forEach((item) => {
+      const imgStreaming = document.createElement("img");
+      watchProviders.appendChild(imgStreaming);
+      imgStreaming.setAttribute("src", `${imgLink}original${item.logo_path}`);
+      // imgStreaming.setAttribute('href', `https://www.google.com/search?q=(${item.provider_name.replace(' ', '+')})`)
+    });
   } catch (error) {
     const erro = document.createElement("p");
     erro.innerText = "Não conseguimos encontrar esse filme =(";
-    watchProvidersContainer.appendChild(erro);
+    watchProviders.appendChild(erro);
   }
 }
 
-function reloadPage() {
-  document.location.reload();
-}
-
-nextMovie.addEventListener("click", reloadPage);
+nextMovie.addEventListener("click", () => {
+  window.location.reload();
+});
 
 randomMovie();

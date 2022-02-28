@@ -5,7 +5,7 @@ div {
   align-items: center;
   text-align: center;
   word-wrap: wrap;
-  font-size: 18px;
+  font-size: 1rem;
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
 }
@@ -21,6 +21,7 @@ div h2 {
 
 img {
   border-radius: 10px;
+  max-height: 40vh;
 }
 
 
@@ -34,10 +35,29 @@ body {
   width: 70px;
   height: 70px;
   border-radius: 35px;
-  margin-right: 2rem;
+  margin-right: 3rem;
   border-style: thin;
   background-color: #0071ff;
   color: white;
   font-family: 'Poppins', sans-serif;
   cursor: pointer;
 }
+
+@media (max-width: 500px) {
+  .next-movie {
+    display: none;
+  }
+
+}
+
+.watch-providers {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.watch-providers img{
+  margin-left: 20px;
+}
+
