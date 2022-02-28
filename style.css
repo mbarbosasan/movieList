@@ -6,7 +6,13 @@ div {
   text-align: center;
   word-wrap: wrap;
   font-size: 18px;
-  font-family: "IBM Plex Mono";
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+
+div h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
 }
 
 .movie-description {
@@ -18,3 +24,20 @@ img {
 }
 
 
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.next-movie {
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  margin-right: 2rem;
+  border-style: thin;
+  background-color: #0071ff;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+}
