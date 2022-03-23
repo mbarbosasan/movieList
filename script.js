@@ -7,7 +7,7 @@ const watchProvidersContainer = document.querySelector(
 );
 const nextMovie = document.querySelector(".next-movie");
 
-const apiKey = `7163d507a975c5833a02e7ea696637bd`;
+const apiKey = API_KEY;
 const imgLink = "https://image.tmdb.org/t/p/";
 
 async function randomMovie() {
